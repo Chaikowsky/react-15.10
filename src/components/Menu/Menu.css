@@ -1,0 +1,29 @@
+.navbar {
+    
+    background-color: rgb(51, 46, 46);
+    height: 60px;
+    
+}
+.navbar_text-logo {
+    color: white;
+    font-size: 18px;
+}
+.navbar-menu {
+    display: flex;
+    flex-direction: row;
+    
+    
+
+
+}
+.navbar-menu-page {
+    color: grey;
+
+    margin-left: 10px;
+}
+.navbar-menu-page:hover {
+    color: white;
+    
+}
+
+
