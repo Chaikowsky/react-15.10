@@ -20,21 +20,7 @@ export default class Counter extends Component {
         }));
 
     }
-    // static propTypes = {
-    //     title: PropTypes.string.isRequired,
-    //     items: PropTypes.arrayOf(
-    //         PropTypes.shape({
-    //             title: PropTypes.string.isRequired,
-    //             href: PropTypes.string.isRequired,
-    //         })
-    //     )
-    // }
-
-    // static defaultProps = {
-    //     title: 'Default menu title',
-    //     items: [],
-    // }
-
+  
     render() {
         const {counter} = this.state;
         return (
