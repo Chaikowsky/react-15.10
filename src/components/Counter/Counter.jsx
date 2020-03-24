@@ -1,7 +1,7 @@
 import './Counter.css';
 
 import React, { Component, Fragment } from 'react';
-//import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 
 
 export default class Counter extends Component {

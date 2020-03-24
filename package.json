@@ -6,7 +6,9 @@
   "scripts": {
     "build": "webpack --mode production",
     "dev": "webpack-dev-server --mode development",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev:c": "node cli/index.js --name",
+    "dev:cs": "node cli/index.js --stateless --name"
   },
   "keywords": [],
   "author": "",
