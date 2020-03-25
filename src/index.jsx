@@ -8,6 +8,7 @@ import ReactDom from 'react-dom';
 import Menu from './components/Menu';
 import Content from './components/Content';
 import Timer from './components/Timer';
+import CommentsContainer from 'containers/CommentsContainer';
 
 import {Container, Button} from 'react-bootstrap';
 
@@ -26,16 +27,18 @@ class App extends Component {
     }
  
     render () {
-        const {comments}=this.state;
+        const {comments, isModal}=this.state;
         return (
             <div className="box">
                 <Menu />
                 <Content title="Post Title" text="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus, vero, obcaecati, aut, error quam sapiente nemo saepe quibusdam sit excepturi nam quia corporis eligendi eos magni recusandae laborum minus inventore?" pic="../../images/1.png" />
                 
                 <button onClick ={this.handleOpen}>Open Model</button>
+                { isModal && <Timer />}
+                <CommentsContainer />
               <Container>
                   
-                <Timer />
+                
               </Container>
               
               
