@@ -1,7 +1,7 @@
 {
   "name": "dz3",
   "version": "1.0.0",
-  "description": "",
+  "description": "React",
   "main": "index.js",
   "scripts": {
     "build": "webpack --mode production",
@@ -17,7 +17,8 @@
     "bootstrap": "^4.4.1",
     "react": "^16.13.0",
     "react-bootstrap": "^1.0.0-beta.17",
-    "react-dom": "^16.13.0"
+    "react-dom": "^16.13.0",
+    "react-router-dom": "^5.1.2"
   },
   "devDependencies": {
     "babel-core": "^6.26.3",
@@ -34,5 +35,13 @@
     "webpack": "^4.42.0",
     "webpack-cli": "^3.3.11",
     "webpack-dev-server": "^3.10.3"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Chaikowsky/react-15.10.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Chaikowsky/react-15.10/issues"
+  },
+  "homepage": "https://github.com/Chaikowsky/react-15.10#readme"
 }

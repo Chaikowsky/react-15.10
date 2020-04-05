@@ -4,7 +4,7 @@ const path = require('path');
 module.exports = (componentName) => {
 
   const componentCode = `
-import './${componentName}';
+import './${componentName}.css';
 
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';

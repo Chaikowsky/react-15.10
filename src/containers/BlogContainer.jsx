@@ -1,14 +1,15 @@
 import React, {Component, Fragment} from 'react';
 
-import CommentsList from 'components/CommentsList';
+import BlogPage from 'components/BlogPage';
+import Menu from 'components/Menu';
 
-export default class CommentsContainer extends Component {
+export default class BlogContainer extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
       loading: true,
-      comments: [],
+      blogs: [],
       page: 0,
     }
   }
@@ -17,10 +18,10 @@ export default class CommentsContainer extends Component {
     this.setState({page: this.state.page + 1})
     const { page } = this.state;
     this.setState({loading: true});
-    fetch(`https://jsonplaceholder.typicode.com/comments?_limit=10&_page= ${ page }`).then((response) => response.json()).then((comments) => {
+    fetch(`https://jsonplaceholder.typicode.com/comments?_limit=10&_page= ${ page }`).then((response) => response.json()).then((blogs) => {
       this.setState({
         loading: false,
-        comments: this.state.comments.concat(comments),
+        blogs: this.state.blogs.concat(blogs),
       })
     })
     .catch(() => { this.setState({loading: false});  });
@@ -46,11 +47,15 @@ export default class CommentsContainer extends Component {
   }
 
   render() {
-    const { loading, comments } = this.state;
+    const { loading, blogs } = this.state;
+    const {onSend} = this.props;
 
     return (
+      
       <Fragment>
-        <CommentsList comments= {comments} />
+        
+        <Menu  onSend={onSend}/>
+        <BlogPage blogs= {blogs} />
         {loading ? 'Loading' : ''}
       </Fragment>
 

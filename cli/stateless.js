@@ -4,13 +4,13 @@ const path = require('path');
 module.exports = (componentName) => {
 
   const componentCode = `
-import './${componentName}';
+import './${componentName}.css';
 
 import React from 'react';
 
 
 
-export default class function(props) {
+export default function(props) {
  
         return (
             <div className="${componentName}"></div>

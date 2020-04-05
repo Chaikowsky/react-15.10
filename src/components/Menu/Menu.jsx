@@ -2,9 +2,10 @@ import './Menu.css';
 
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
+import {Link, withRouter} from 'react-router-dom';
 
 
-export default class Menu extends Component {
+class Menu extends Component {
     static propTypes = {
         title: PropTypes.string.isRequired,
         items: PropTypes.arrayOf(
@@ -20,19 +21,19 @@ export default class Menu extends Component {
         items: [],
     }
 
+
     render() {
-        const {title, items} = this.props;
+        const {items, location} = this.props;
         return (
             <div className="navbar">
                 <div className="navbar_text-logo">Start Bootstrap</div>
-                <div className="navbar-menu">
-                    <a href="#" className="navbar-menu-page">Home</a>
-                    <a href="#" className="navbar-menu-page">About</a>
-                    <a href="#" className="navbar-menu-page">Services</a>
-                    <a href="#" className="navbar-menu-page">Contact</a>                   
-                </div>
+                <ul className="navbar-menu">
+                    {items.map((item, idx)=> <li key={idx} className={location.pathname === item.href ? 'active' : ''} ><Link to={item.href}>{item.title}</Link></li>)}
+                                     
+                </ul>
                
             </div>
         )
     }
 }
+export default withRouter(Menu);

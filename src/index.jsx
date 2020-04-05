@@ -1,7 +1,9 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
+import routes from './routes';
 
 import React, { Component } from 'react';
 import ReactDom from 'react-dom';
+import {BrowserRouter, Switch, Route} from 'react-router-dom';
 
 
 
@@ -9,8 +11,21 @@ import Menu from './components/Menu';
 import Content from './components/Content';
 import Timer from './components/Timer';
 import CommentsContainer from 'containers/CommentsContainer';
+import BlogContainer from 'containers/BlogContainer';
+import HomeContainer from 'containers/HomeContainer';
+import CommentContainer from 'containers/CommentContainer';
+import UserContainer from 'containers/UserContainer';
+
 
 import {Container, Button} from 'react-bootstrap';
+
+
+const items =[
+    {href: '/', title: 'Home'},
+    {href: '/users', title: 'Users'},
+    {href: '/comments', title: 'Comments'},
+    {href: '/contacts', title: 'Contacts'},
+]
 
 
 
@@ -20,31 +35,25 @@ class App extends Component {
         this.state = {
             comments:[],
             isModal: false,
+            activePage: 'Home',
         }
     }
-    handleOpen = (e)=> {
-        this.setState({isModal: !this.state.isModal})
-    }
+
+
+
  
     render () {
-        const {comments, isModal}=this.state;
+
         return (
             <div className="box">
-                <Menu />
-                <Content title="Post Title" text="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus, vero, obcaecati, aut, error quam sapiente nemo saepe quibusdam sit excepturi nam quia corporis eligendi eos magni recusandae laborum minus inventore?" pic="../../images/1.png" />
-                
-                <button onClick ={this.handleOpen}>Open Model</button>
-                { isModal && <Timer />}
-                <CommentsContainer />
-              <Container>
-                  
-                
-              </Container>
-              
-              
+                <Menu items={items} />
+                <Switch>
+                    {routes.map((route, idx)=> <Route key={idx} {...route} />)}
+                </Switch>
+
             </div>
         )
     }
 }
 
-ReactDom.render(<App />, document.getElementById('root'));
+ReactDom.render(<BrowserRouter><App /></BrowserRouter>, document.getElementById('root'));
