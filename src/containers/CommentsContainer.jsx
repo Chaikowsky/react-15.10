@@ -2,41 +2,25 @@ import React, {Component, Fragment} from 'react';
 
 import CommentsList from 'components/CommentsList';
 
-export default class CommentsContainer extends Component {
-  constructor(props) {
-    super(props);
+import { connect} from 'react-redux';
+import { load } from 'actions/comments';
 
-    this.state = {
-      loading: true,
-      comments: [],
-      page: 0,
-    }
-  }
-
-  loadComments = () => {
-    this.setState({page: this.state.page + 1})
-    const { page } = this.state;
-    this.setState({loading: true});
-    fetch(`https://jsonplaceholder.typicode.com/comments?_limit=10&_page= ${ page }`).then((response) => response.json()).then((comments) => {
-      this.setState({
-        loading: false,
-        comments: this.state.comments.concat(comments),
-      })
-    })
-    .catch(() => { this.setState({loading: false});  });
-  }
-
+class CommentsContainer extends Component {
+ 
+  
   handleScroll = () => {
+    const { loadComments } = this.props;
     if(document.documentElement.scrollHeight - window.scrollY - window.innerHeight < 10) {
-      if(!this.state.loading) {
-        this.loadComments();
+      if(!this.props.loading) {
+        loadComments();
       };
     }
-    console.log(document.documentElement.scrollHeight, window.scrollY, document.body.offsetHeight, document.documentElement.clientHeight, window.innerHeight)
+    // console.log(document.documentElement.scrollHeight, window.scrollY, document.body.offsetHeight, document.documentElement.clientHeight, window.innerHeight)
   }
 
   componentDidMount() {
-    this.loadComments();
+    const { loadComments } = this.props;
+    loadComments();
 
     window.addEventListener('scroll', this.handleScroll);
   }
@@ -46,7 +30,7 @@ export default class CommentsContainer extends Component {
   }
 
   render() {
-    const { loading, comments } = this.state;
+    const { loading, comments } = this.props;
 
     return (
       <Fragment>
@@ -57,3 +41,22 @@ export default class CommentsContainer extends Component {
     )
   }
 }
+
+function mapStateToProps(state, props){
+  return {
+    ...props,
+    comments: state.comments.entities,
+    loading: state.comments.loading
+  }
+
+}
+
+function mapDispatchToProps(dispatch, props){
+  return {
+    ...props,
+    loadComments: () => dispatch(load()),
+  }
+
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(CommentsContainer);

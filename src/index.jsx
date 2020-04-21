@@ -6,6 +6,10 @@ import ReactDom from 'react-dom';
 import {BrowserRouter, Switch, Route} from 'react-router-dom';
 
 
+import {Provider} from 'react-redux';
+import store from './store';
+
+
 
 import Menu from './components/Menu';
 import Content from './components/Content';
@@ -15,6 +19,7 @@ import BlogContainer from 'containers/BlogContainer';
 import HomeContainer from 'containers/HomeContainer';
 import CommentContainer from 'containers/CommentContainer';
 import UserContainer from 'containers/UserContainer';
+import UContainer from 'containers/UContainer';
 
 
 import {Container, Button} from 'react-bootstrap';
@@ -24,7 +29,7 @@ const items =[
     {href: '/', title: 'Home'},
     {href: '/users', title: 'Users'},
     {href: '/comments', title: 'Comments'},
-    {href: '/contacts', title: 'Contacts'},
+    {href: '/blogs', title: 'Blogs'},
 ]
 
 
@@ -56,4 +61,4 @@ class App extends Component {
     }
 }
 
-ReactDom.render(<BrowserRouter><App /></BrowserRouter>, document.getElementById('root'));
+ReactDom.render(<Provider store={store}><BrowserRouter><App /></BrowserRouter></Provider>, document.getElementById('root'));

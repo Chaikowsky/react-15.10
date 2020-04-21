@@ -1,19 +1,18 @@
-import './BlogPage.css';
+import './BlogPage';
 
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
+import {Link} from 'react-router-dom';
 
 
 export default class BlogPage extends Component {
 
     render() {
-        const { blogs } = this.props;
+        const {blogs} = this.props;
         return (
-            <div className = "BlogPage">
-                
-                {blogs.map(({name, body}, idx) => <div className="blog" key={idx}><h3>{name}:</h3> <p>{body}</p></div>)}
-                
-            </div>
+            <ul className = "CommentsList">
+                {blogs.map(({title, body, id}, idx) => <li key={idx}><Link to={`/blogs/${id}`}><h3>{title}:</h3></Link><p>{body}</p></li>)}
+            </ul>
         )
     }
 }

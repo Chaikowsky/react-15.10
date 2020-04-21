@@ -1,11 +1,11 @@
 import React, {Component, Fragment} from 'react';
 
-import BlogPage from 'components/BlogPage';
+import User from 'components/User';
 
 import { connect} from 'react-redux';
-import { load } from 'actions/blogs';
+import { load } from 'actions/user';
 
-class BlogContainer extends Component {
+class UContainer extends Component {
  
   
   // handleScroll = () => {
@@ -18,8 +18,8 @@ class BlogContainer extends Component {
   // }
 
   componentDidMount() {
-    const { loadBlogs } = this.props;
-    loadBlogs();
+    const { loadUsers } = this.props;
+    loadUsers();
 
     //window.addEventListener('scroll', this.handleScroll);
   }
@@ -29,11 +29,11 @@ class BlogContainer extends Component {
   }
 
   render() {
-    const { loading, blogs } = this.props;
+    const { loading, users, match } = this.props;
 
     return (
       <Fragment>
-        <BlogPage blogs= {blogs} />
+        <User users= {users} userId={match.params.userId} />
         {loading ? 'Loading' : ''}
       </Fragment>
 
@@ -44,8 +44,8 @@ class BlogContainer extends Component {
 function mapStateToProps(state, props){
   return {
     ...props,
-    blogs: state.blogs.entities,
-    loading: state.blogs.loading
+    users: state.user.entities,
+    loading: state.user.loading
   }
 
 }
@@ -53,9 +53,9 @@ function mapStateToProps(state, props){
 function mapDispatchToProps(dispatch, props){
   return {
     ...props,
-    loadBlogs: () => load(dispatch),
+    loadUsers: () => load(dispatch, props.match.params.userId),
   }
 
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(BlogContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(UContainer);

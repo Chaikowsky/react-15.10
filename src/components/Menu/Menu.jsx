@@ -4,8 +4,8 @@ import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import {Link, withRouter} from 'react-router-dom';
 
-
-class Menu extends Component {
+@withRouter
+export default class Menu extends Component {
     static propTypes = {
         title: PropTypes.string.isRequired,
         items: PropTypes.arrayOf(
@@ -36,4 +36,3 @@ class Menu extends Component {
         )
     }
 }
-export default withRouter(Menu);

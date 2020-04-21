@@ -22,7 +22,7 @@ export default class CommentContainer extends Component {
   componentDidMount() {
     const { match } = this.props;
     this.setState({loading: true});
-    fetch(`https://jsonplaceholder.typicode.com/comments/${match.params.id}`).then((response) => response.json()).then((comment) => {
+    fetch(`https://jsonplaceholder.typicode.com/comments?id=${match.params.id}`).then((response) => response.json()).then((comment) => {
       this.setState({
         loading: false,
         comment,
@@ -38,6 +38,7 @@ export default class CommentContainer extends Component {
 
   render() {
     const {loading, comment } = this.state;
+    const { match } = this.props;
 
 
     return (
@@ -45,7 +46,7 @@ export default class CommentContainer extends Component {
       <Fragment>
         
         
-        <Comment name={comment.name} body={comment.body}/>
+        <Comment name={comment.name} body={comment.body}  />
         {loading ? 'Loading' : ''}
       </Fragment>
 

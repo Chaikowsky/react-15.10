@@ -41,8 +41,8 @@ export default class CommentForm extends Component {
         const {author, message} = this.state;
         return (
             <Fragment>
-                <br /><input onChange={this.handleChange} name='author' value={author} type='text' /><br />
-                <textarea onChange={this.handleChange} name='message' value={message}></textarea>
+                <input onChange={this.handleChange} name='author' value={author} type='text' /><br />
+                <textarea onChange={this.handleChange} name='message' value={message}></textarea><br />
                 <button onClick = {this.handleClick}>Send</button>
             </Fragment>
         )

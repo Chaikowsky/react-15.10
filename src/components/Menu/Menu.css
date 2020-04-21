@@ -14,22 +14,30 @@
     
     list-style-type: none;
     
-    
-    
-
-
 }
-.navbar-menu-page {
+.navbar-menu>li {
+    margin-right: 5px;
+    
+}
+.navbar-menu li a {
     color: grey;
-
-    margin-left: 10px;
-}
-.navbar-menu-page:hover {
-    color: white;
+    text-decoration: none;
     
 }
-ul .active {
-    background-color: #fff;
+
+
+.active {
+    border-bottom: 2px solid white;
+    
+}
+
+ul .active a {
+    color: white;
+
+}
+.navbar-menu li a:hover {
+    color: white;
+
 }
 
 
